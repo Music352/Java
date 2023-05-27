@@ -1,0 +1,64 @@
+//import EducatedCreativePortablesoftware.Enter;
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner scanInt = new Scanner(System.in);
+    int maxRows = 25; //максимальное колличество строк
+    int minRows = 1; //минимальное колличество строк
+    //Enter en = new Enter();
+    
+    //-----------РЕШЕНИЕ П******------------//////////////////////
+    
+    int rows;// = en.roww; ХЗ Почему
+//
+    do {
+      System.out.print("Enter the number of rows: ");
+      rows = scanInt.nextInt();
+      if (rows > maxRows || rows < minRows){
+        System.out.println("The number must be from " + minRows + " to " + maxRows + " inclusive!");
+      }
+    } while (rows > maxRows || rows < minRows);
+//    
+    int numberRows = 0;
+    for(int i = 0; i < Math.pow(rows, 2) * 2; i++){
+      if (i % (rows * 2) == 0 && i != 0){
+        System.out.println();
+        numberRows++;
+      }
+      if((i % rows <= numberRows && (i / rows) % 2 == 0) || 
+        (i % rows >= rows - 1 - numberRows && (i / rows) % 2 != 0)){
+        //System.out.print((char)11088);
+        System.out.print('*');
+      } else {
+        System.out.print(" ");
+      }
+    }
+    System.out.println();
+    
+    //------Решение изи-------------------/////////////////////////
+    
+    // System.out.print("Enter the number of rows: ");
+    // rows = scanInt.nextInt();
+    //int rows2 = en.roww;
+//
+    do {
+      System.out.print("Enter the number of rows: ");
+      rows = scanInt.nextInt();
+      if (rows > maxRows || rows < minRows){
+        System.out.println("The number must be from " + minRows + " to " + maxRows + " inclusive!");
+      }
+    } while (rows > maxRows || rows < minRows);
+//    
+    for (int i = 0; i < rows; i++){
+      for (int j = 0; j < rows * 2; j++){
+        if (j - i <= 0 || j + i > (rows - 1) * 2){
+          System.out.print('*');
+        } else {
+          System.out.print(' ');
+        }
+      }
+      System.out.println();
+    }
+  }
+}
