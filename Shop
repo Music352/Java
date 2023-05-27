@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Main {
+  public static void main(String[] args) {
+    Scanner scanString = new Scanner(System.in);
+    Scanner scanInt = new Scanner(System.in);
+    String[][] shop = {
+      {"Каретка", "1200"},
+      {"Шатун", "1000"},
+      {"Седло", "300"},
+      {"Педаль", "100"},
+      {"Седло", "1500"},
+      {"Рама", "12000"},
+      {"Обод", "2000"},
+      {"Шатун", "200"},
+      {"Седло", "2700"}
+    };
+    System.out.println("Что посчитать: ");
+    int summ = 0,
+     counter = 0;
+    String nameShop = scanString.nextLine();
+    for (String[] shop1 : shop){
+      if (nameShop.equals(shop1[0])){
+        summ += Integer.parseInt(shop1[1]);
+        counter++;
+      }
+    }
+    System.out.println("Сумма: " + summ);
+    System.out.println("Кол-во: " + counter);
+    }
+ }
