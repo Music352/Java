@@ -1,0 +1,76 @@
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+
+
+class Main {
+    public static void main(String[] args) {
+        // String str = System.console().readLine();
+        Scanner scanInt = new Scanner(System.in);
+        Scanner scanStr = new Scanner(System.in);
+        
+        int quantCountry = 1;
+        System.out.print("input quantity of country: ");
+        try {
+            quantCountry = scanInt.nextInt();
+        } catch (InputMismatchException err) {
+            quantCountry = 2;
+            System.out.println(err);
+        } catch (Exception err) {
+            System.out.println(err);
+        }
+
+        // Map mapCountry = new HashMap<String, List>();
+        Map<String, List> mapCountry = new HashMap<String, List>();
+        System.out.println(mapCountry);
+
+        for (int i=0; i < quantCountry; i++) {
+            System.out.print("input country and 3 cities: ");
+            String dataCountry = scanStr.nextLine();
+
+            String[] arrCountry = dataCountry.split(" ");
+            List<String> list = Arrays.asList(arrCountry);
+            // List l = new ArrayList<>(list);
+            List listCities = list.subList(1, list.size());
+            // String[] arrC = Arrays.copyOfRange(arrCountry, 1, arrCountry.length-1);
+            System.out.println(listCities.size());
+            if (listCities.size() < 3) {
+                System.out.println("less than 3 city");
+            }
+
+            mapCountry.put(arrCountry[0], listCities);
+        } 
+        System.out.println(mapCountry);
+
+        while (true) {
+            System.out.print("input city: ");
+            String answer = System.console().readLine();
+
+            if (answer.isEmpty()) {
+                System.out.println("the end");
+                break;
+            }
+
+            boolean flagIsCityNotInCountry = true;
+            for (Map.Entry<String, List> entry: mapCountry.entrySet()) {
+                String key = entry.getKey();
+                List<String> val = entry.getValue();
+
+                for (String city: val) {
+                    if (answer.equals(city)) {
+                        System.out.println(city + " in " + key);
+                        flagIsCityNotInCountry = false;
+                    } 
+                }
+            }
+
+            if (flagIsCityNotInCountry) {
+                System.out.println(answer + " not in data");
+            }
+        }
+    }
+}
