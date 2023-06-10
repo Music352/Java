@@ -1,0 +1,63 @@
+import java.lang.StringIndexOutOfBoundsException;
+
+
+class Main {
+    static String replace(String txt, String in, String out) {
+        String newStr = "";
+
+        for (String s: txt.split("")) {
+            if (s.equals(in)) {
+                newStr += out;
+            } else {
+                newStr += s;
+            }
+        }
+
+        return newStr;
+    }
+
+    static String replaceAll(String txt, String in, String out) {
+        String newStr = "";
+        int shift = in.length();
+        int step = 1;
+
+        for (int i=0; i < txt.length(); i+=step) {
+            System.out.println(newStr);
+            try {
+                if (txt.substring(i, i+shift).equals(in)) {
+                    newStr += out;
+                    step = shift;
+                } else {
+                    newStr += txt.substring(i, i+1);
+                    step = 1;
+                }
+            } catch (StringIndexOutOfBoundsException err) {
+                System.out.println(err);
+                newStr += txt.substring(i, i+1);
+                step = 1;
+            }
+        }
+        
+        return newStr;
+    }
+
+
+    
+    public static void main(String[] args) {
+        System.out.println("Hello world!");
+        String str = replace("qwwerwty", "w", "3");
+        System.out.println(str);
+        str = replace("qwwerwty", "w", "33");
+        System.out.println(str);
+        str = replace("qwwerwty", "w", "");
+        System.out.println(str);
+        System.out.println();
+        
+        str = replaceAll("qwwerwwty", "ww", "");
+        System.out.println(str);
+        str = replaceAll("qwwerwwty", "ww", "WWW");
+        System.out.println(str);
+        str = replaceAll("qwwwerwwwty", "ww", "55");
+        System.out.println(str);
+    }
+}
