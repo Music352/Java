@@ -1,0 +1,41 @@
+Skip to content
+
+Search & run commands
+Search & run commands
+Ctrl
+.
+
+// import java.io.*;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.FileWriter;
+import java.io.FileReader;
+
+
+class Main {
+    public static void main(String[] args) throws IOException {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            String line = br.readLine();
+            System.out.println(line);
+            // int lineInt = Integer.parseInt(br.readLine());
+            // System.out.println(lineInt);
+            FileWriter fw = new FileWriter("one.txt", true);
+            line += "\n";
+            fw.write(line);
+            fw.close();
+        }
+        try (BufferedReader br = new BufferedReader(new FileReader("one.txt"))) {
+            while (true) {
+                String line = br.readLine();
+                if (line == null) {
+                    break;
+                }
+
+                System.out.println(line);
+            }
+        } 
+        
+        
+    }
+}
