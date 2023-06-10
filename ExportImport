@@ -1,16 +1,10 @@
-Skip to content
-
-Search & run commands
-Search & run commands
-Ctrl
-.
-
 // import java.io.*;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.FileWriter;
 import java.io.FileReader;
+import java.util.Scanner;;
 
 
 class Main {
@@ -34,8 +28,18 @@ class Main {
 
                 System.out.println(line);
             }
-        } 
-        
-        
+        }
+       try {
+           FileReader fr = new FileReader("one.txt");
+           Scanner scan = new Scanner(fr);
+
+           while (scan.hasNextLine()) {
+               String str = scan.nextLine();
+               System.out.println(str);
+           }
+           
+       }  catch (IOException ior) {
+           System.out.println(ior);
+       }
     }
 }
